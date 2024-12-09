@@ -1,118 +1,99 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Banner from "../../components/Banner";
+import RentalInfo from "../../components/RentalInfo";
+import OwnerInfo from "../../components/OwnerInfo";
+import DetailsSection from "../../components/DetailsSection";
+import { useNavigate } from "react-router-dom";
+import Error from "../../components/Error";
 
 function Logement() {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { logementId } = useParams();
   const [rental, setRental] = useState({
     pictures: [],
     tags: [],
   });
-  const [slideIndex, setSlideIndex] = useState(0);
   const [stars, setStars] = useState([]);
 
-  // Boucle sur les pictures pour afficher les images
   useEffect(() => {
+    if (!logementId || logementId === "") return;
+
+    // Récupération des données du logement via l'API
     fetch(`http://localhost:8080/api/properties/${logementId}`)
       .then((res) => res.json())
       .then((data) => {
-        setRental(data);
-        for (let i = 0; i < 5; i++) {
-          if (i < data.rating) {
-            setStars((current) => [...current, "fa-solid fa-star"]);
-          } else {
-            setStars((current) => [...current, "fa-solid fa-star empty"]);
-          }
+        console.log(data);
+        if (!data || data === "Not found") {
+          setError("Aucune donnée trouvée");
+          setIsLoading(false);
+          return;
         }
+        setRental(data);
+        const tempStars = [];
+        for (let i = 0; i < 5; i++) {
+          tempStars.push(
+            i < data.rating ? "fa-solid fa-star" : "fa-solid fa-star empty"
+          );
+        }
+        setStars(tempStars);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setIsLoading(false);
       });
-  }, [logementId]);
-
-  // Fonction pour passer à la photo suivante
-  const nextSlide = () => {
-    if (slideIndex < rental.pictures.length - 1) {
-      setSlideIndex(slideIndex + 1);
-    } else {
-      setSlideIndex(0);
-    }
-  };
-
-  // Fonction pour passer à la photo précédente
-  const previousSlide = () => {
-    if (slideIndex > 0) {
-      setSlideIndex(slideIndex - 1);
-    } else {
-      setSlideIndex(rental.pictures.length - 1);
-    }
-  };
+  }, [logementId, navigate]);
+  if (isLoading) {
+    return <p>Chargement...</p>;
+  }
+  console.log(error);
+  console.log(rental);
+  if (error) {
+    return <Error message={error} />;
+  }
 
   return (
-
     <div className="rental">
-
-    {/* Affichage Carousel */}
-    
-      <div className="slideshow-container">
-        <div className="numbertext"></div>
-        <img className="img_slide" src={rental.pictures[slideIndex]} alt="" />
-        <div className="text">
-          {slideIndex + 1} / {rental.pictures.length}
-        </div>
-
-        {/* <!-- Boutons suivant & precedent --> */}
-         <button className="prev" onClick={previousSlide}>
-          &#10094; {/* Code HTML pour une flèche gauche */}
-        </button>
-        <button className="next" onClick={nextSlide}>
-          &#10095; {/* Code HTML pour une flèche droite */}
-        </button>
-        </div>
-      {/* Fin affichage Carousel */}
-
+      <Banner images={rental.pictures} className="carousel-banner" />
       <section className="info">
-        <div className="titles">
-          <h1>{rental.title}</h1>
-          <p>{rental.location}</p>
-        </div>
-        <div className="owner">
-          <h2>{rental.host?.name}</h2>
-          <img src={rental.host?.picture} alt={rental.host?.name} />
-        </div>
+        <RentalInfo title={rental.title} location={rental.location} />
+        <OwnerInfo
+          hostName={rental.host?.name}
+          hostPicture={rental.host?.picture}
+        />
       </section>
+
       <section className="stats">
         <div className="tags">
-          {rental.tags.map((tag) => (
-            <span>{tag}</span>
+          {rental.tags.map((tag, index) => (
+            <span key={index}>{tag}</span>
           ))}
         </div>
         <div className="stars">
-          {stars.map((star) => (
-            <i className={star}></i>
+          {stars.map((star, index) => (
+            <i key={index} className={star}></i>
           ))}
         </div>
       </section>
-
       <section className="description_equipements">
-        <details>
-          <summary>Description</summary>
-          
-          <p>{rental.description}</p>
-        </details>
-      
-        <details>
-          <summary>Equipements</summary>
-
-          {rental.equipments?.map((equipment) => (
-            <li> {equipment}</li>
-          ))}
-        </details>
-
-
-  
+        <DetailsSection
+          title="Description"
+          content={rental.description || "Description non disponible"}
+        />
+        <DetailsSection
+          title="Équipements"
+          content={
+            rental.equipments?.length
+              ? rental.equipments
+              : ["Aucun équipement disponible"]
+          }
+        />
       </section>
-
     </div>
   );
 }
-
-
 
 export default Logement;
