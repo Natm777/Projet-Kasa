@@ -188,5 +188,201 @@ code {
   
 }
 
+/* Styles spécifiques pour carousel-banner*/
+
+.carousel-banner .prev,
+.carousel-banner .next {
+  position: absolute;
+  top: 50%; /* Centre verticalement */
+  transform: translateY(-50%); /* Ajustement vertical */
+  background-color: rgb(0 0 0 / 0%); /* Fond semi-transparent */
+  color: white; /* Couleur du texte */
+  border: none;
+  padding: 0.5rem 1rem; /* Taille des flèches */
+  cursor: pointer;
+  z-index: 2; /* Superpose aux autres éléments */
+  font-size: 4rem; /* Taille des flèches */
+  border-radius: 50%; /* Cercle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-banner .prev {
+  left: 10px; /* Position à gauche */
+}
+
+.carousel-banner .next {
+  right: 10px; /* Position à droite */
+}
+
+.banner.carousel-banner {
+  position: relative;
+  width: 100%;
+  max-width: 1240px;
+  height: 415px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  border-radius: 25px;
+}
 
 
+.banner.carousel-banner .banner-image {
+  width: 1240px;
+  height: 415px;
+  position: absolute;
+  z-index: 1;
+  object-fit: cover;
+  border-radius: 25px;
+}
+
+.carousel-banner .slide-index {
+  position: absolute !important;
+  bottom: 10px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background-color: rgb(0 0 0 / 0%) !important;
+  color: white !important;
+  padding: 0.5rem !important;
+  font-size: 18px !important;
+  z-index: 2 !important;
+  font-family: Montserrat,;
+}
+
+
+
+/* Styles spécifiques pour la description et les équipements */
+
+.description_equipements {
+  display: flex; /* Aligner les éléments horizontalement */
+  justify-content: space-between; /* Ajouter un espace entre les sections */
+  align-items: flex-start; /* Aligner les sections en haut */
+  gap: 5rem; /* Espacement entre les deux sections */
+  flex-wrap: wrap; /* Passer à la ligne sur les petits écrans */
+  margin: 2rem auto; /* Centrer la section avec un espacement vertical */
+  max-width: 1240px; /* Limiter la largeur totale */
+}
+
+.details-section {
+  flex: 1;
+  width: 100%;
+  border-radius: 8px !important;
+  background-color: #f76a6a;
+  color: white;
+  overflow: hidden;
+
+}
+
+.details-section summary {
+  background-color: #f76a6a; /* Fond rouge */
+  color: white; /* Texte blanc */
+  padding: 1rem; /* Espacement interne */
+  font-size: 24px; /* Taille du texte */
+  font-weight: bold; /* Texte en gras */
+  display: flex; /* Alignement du texte et icône */
+  justify-content: space-between; /* Séparation entre texte et icône */
+  align-items: center; /* Centrer verticalement */
+  cursor: pointer;
+  border-radius: 8px;
+
+}
+
+
+.details-section[open] .details-arrow {
+  transform: rotate(180deg); /* Rotation quand ouvert */
+}
+
+.details-section .details-arrow {
+  width: 17px; /* Taille de l'icône */
+  height: 17px;
+  transition: transform 0.3s ease; /* Animation de rotation */
+}
+
+.details-section p,
+.details-section ul {
+  background-color: white; /* Fond blanc pour le contenu */
+  color: #333; /* Texte sombre */
+  padding: 1rem; /* Espacement interne */
+  margin: 0; /* Supprimer les marges */
+  list-style: none; /* Supprimer les puces */
+}
+
+.details-section.open {
+  border-radius: 8px 8px 8px 8px;
+
+}
+
+
+.details-section[open] summary {
+  background-color: #f55b5b; /* Changer la couleur quand ouvert */
+  border-radius: 8px; /* Coins arrondis */
+ 
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .description_equipements {
+    flex-direction: column; /* Les éléments seront empilés verticalement */
+    gap: 1rem;
+  }
+
+  .details-section {
+    max-width: 100%; /* Prendre toute la largeur disponible */
+  }
+}
+
+/*Info section*/
+
+.info {
+  display: flex;
+  justify-content: space-between; /* Space between RentalInfo and OwnerInfo */
+  align-items: center; /* Align items vertically */
+  margin: 2rem 0; /* Add vertical spacing */
+  
+}
+  
+/*Rental section*/
+
+.rental-info {
+  flex: 2; /* Take up more space than the owner info */
+}
+
+.rental-title {
+  color: #f76a6a; /* Match the color of the title */
+  font-size: 2rem; /* Adjust the font size for the title */
+  font-weight: bold;
+  margin: 0;
+}
+
+.rental-location {
+  color: black;
+  font-size: 1.2rem; /* Adjust the font size for the location */
+  margin: 0.5rem 0 0 0;
+}
+
+
+/*Owner section*/
+.owner-info {
+  flex: 1; /* Take up less space than the rental info */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.owner-name {
+  color: #f76a6a; /* Match the color for the owner's name */
+  font-size: 1.2rem; /* Adjust font size */
+  margin: 0 0 0.5rem 0;
+}
+
+.owner-picture {
+  width: 60px; /* Adjust the size of the picture */
+  height: 60px;
+  border-radius: 50%; /* Make it circular */
+  background-color: #d3d3d3; /* Default background in case image fails */
+}
