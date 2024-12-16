@@ -13,6 +13,7 @@ code {
 }
 
 
+
 /* Header */
 .header {
   max-width: 1240px;
@@ -150,10 +151,13 @@ code {
 .footer {
   max-width: 100%;
   margin: auto;
+  
 }
 
 .footer_img {
+  margin-top: 50px;
  width: 100%
+ 
 }
 
 /*A propos*/
@@ -254,75 +258,71 @@ code {
 
 
 
-/* Styles spécifiques pour la description et les équipements */
 
+/* Styles spécifiques pour la description et les équipements */
 .description_equipements {
-  display: flex; /* Aligner les éléments horizontalement */
-  justify-content: space-between; /* Ajouter un espace entre les sections */
-  align-items: flex-start; /* Aligner les sections en haut */
-  gap: 5rem; /* Espacement entre les deux sections */
-  flex-wrap: wrap; /* Passer à la ligne sur les petits écrans */
-  margin: 2rem auto; /* Centrer la section avec un espacement vertical */
-  max-width: 1240px; /* Limiter la largeur totale */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 1rem;
+  max-width: 1240px;
 }
 
 .details-section {
   flex: 1;
   width: 100%;
-  border-radius: 8px !important;
-  background-color: #f76a6a;
   color: white;
-  overflow: hidden;
-
+   transition: all 0.3s ease; /* Transition fluide */
+  position: relative;
 }
 
 .details-section summary {
-  background-color: #f76a6a; /* Fond rouge */
-  color: white; /* Texte blanc */
-  padding: 1rem; /* Espacement interne */
-  font-size: 24px; /* Taille du texte */
-  font-weight: bold; /* Texte en gras */
-  display: flex; /* Alignement du texte et icône */
-  justify-content: space-between; /* Séparation entre texte et icône */
-  align-items: center; /* Centrer verticalement */
+  background-color: #f76a6a;
+  color: white;
+  padding: 1rem;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 10px;
 
-}
-
-
-.details-section[open] .details-arrow {
-  transform: rotate(180deg); /* Rotation quand ouvert */
 }
 
 .details-section .details-arrow {
-  width: 17px; /* Taille de l'icône */
+  width: 17px;
   height: 17px;
-  transition: transform 0.3s ease; /* Animation de rotation */
+  transition: transform 0.3s ease; /* Rotation fluide pour la flèche */
+  border-radius: 50%; /* Flèche arrondie */
+}
+
+.details-section[open] .details-arrow {
+  transform: rotate(180deg); /* Rotation de la flèche lorsqu'elle est ouverte */
 }
 
 .details-section p,
 .details-section ul {
   background-color: white; /* Fond blanc pour le contenu */
   color: #333; /* Texte sombre */
-  padding: 1rem; /* Espacement interne */
-  margin: 0; /* Supprimer les marges */
-  list-style: none; /* Supprimer les puces */
+  padding: 1rem;
+  margin: 0;
+  list-style: none;
+  
 }
 
-.details-section.open {
-  border-radius: 8px 8px 8px 8px;
-
-}
-
-
-.details-section[open] summary {
-  background-color: #f55b5b; /* Changer la couleur quand ouvert */
-  border-radius: 8px; /* Coins arrondis */
+/* Transition fluide pour le contenu */
+.details-section div {
+  overflow: hidden;
+  transition: height 1s ease;
  
 }
 
-
+.details-section[open] div {
+  height: auto; /* Hauteur dynamique quand ouvert */
+}
 
 @media screen and (max-width: 768px) {
   .description_equipements {
@@ -335,6 +335,7 @@ code {
   }
 }
 
+
 /*Info section*/
 
 .info {
@@ -346,9 +347,34 @@ code {
 }
   
 /*Rental section*/
-
+.rental {
+  max-width: 1240px; /* Limite la largeur au même niveau que le carrousel */
+  margin: 0 auto; /* Centre les éléments horizontalement */
+  display: flex;
+  flex-direction: column; /* Arrange les enfants verticalement */
+  align-items: center; /* Centre les éléments horizontalement */
+}
+.stats {
+  width: 100%; /* Prend toute la largeur du conteneur */
+  display: flex;
+  justify-content: space-between; /* Espace entre les tags et les étoiles */
+  align-items: center; /* Aligne les éléments verticalement */
+  margin-top: 1rem;
+}
 .rental-info {
-  flex: 2; /* Take up more space than the owner info */
+  flex: 2; /* Prend plus de place que .owner-info */
+  max-width: calc(1240px - 200px - 2rem); /* Largeur dynamique pour rester alignée avec .info-container */
+  word-wrap: break-word; /* Gère les longs textes */
+}
+.info-container {
+  display: flex; /* Dispose les éléments horizontalement */
+  justify-content: space-between; /* Espace entre RentalInfo et OwnerInfo */
+  align-items: center; /* Aligne les éléments verticalement au centre */
+  max-width: 1240px; /* Largeur maximale alignée avec le carrousel */
+  width: 100%; /* Prend toute la largeur disponible */
+  margin: 1rem auto; /* Centrage horizontal avec un espacement vertical */
+  /* padding: 0 1rem; Ajoute un espacement interne pour éviter que les éléments touchent les bords */
+  box-sizing: border-box; /* Inclut le padding dans la largeur */
 }
 
 .rental-title {
@@ -367,22 +393,159 @@ code {
 
 /*Owner section*/
 .owner-info {
-  flex: 1; /* Take up less space than the rental info */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  flex-direction: row; /* Aligne les éléments côte à côte */
+  align-items: center; /* Centre verticalement l'image et le texte */
+  text-align: left; /* Aligne le texte à gauche */
+  max-width: 200px;
+  word-wrap: break-word;
+  justify-content: flex-start; /* Aligne les éléments au début */
+  gap: 1rem; /* Espace entre l'image et le texte */
 }
 
 .owner-name {
-  color: #f76a6a; /* Match the color for the owner's name */
-  font-size: 1.2rem; /* Adjust font size */
-  margin: 0 0 0.5rem 0;
+  display: flex;
+  flex-direction: column; /* Force le prénom et le nom à être sur deux lignes */
+  color: #f76a6a;
+  font-family: 'Montserrat', sans-serif; /* Typographie spécifiée */
+  font-weight: 500; /* Poids de la police */
+  font-size: 18px; /* Taille de la police */
+  line-height: 25.67px; /* Hauteur de ligne */
+  margin: 0; /* Supprime les marges par défaut */
+  text-align: right; /* Alignement à droite */
 }
 
+
 .owner-picture {
-  width: 60px; /* Adjust the size of the picture */
+  width: 60px;
   height: 60px;
-  border-radius: 50%; /* Make it circular */
-  background-color: #d3d3d3; /* Default background in case image fails */
+  border-radius: 50%;
+  background-color: #d3d3d3;
+  flex-shrink: 0; /* Empêche l'image de se déformer */
+}
+
+
+/* Conteneur pour aligner les tags et les étoiles */
+.tags-stars {
+  display: flex; /* Aligner les enfants horizontalement */
+  justify-content: space-between; /* Ajouter de l'espace entre les enfants */
+  align-items: center; /* Centrer verticalement */
+  gap: 2rem; /* Espace entre les tags et les étoiles */
+}
+
+/* Styles pour les tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem; /* Espacement entre les tags */
+}
+
+.tags span {
+  background-color: #f76a6a;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Styles pour les étoiles */
+.stars {
+  display: flex;
+  gap: 0.5rem; /* Espacement entre les étoiles */
+}
+
+.stars i {
+  color: #f76a6a;
+  font-size: 18px;
+}
+
+
+
+
+/* Styles pour la section A propos */
+
+.apropospage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+.about-details {
+  width: 100%;
+  max-width: 1023px; /* Aligner avec la largeur maximale */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Espacement entre les sections */
+}
+
+.details-section {
+    overflow: hidden;
+}
+
+.details-section summary {
+  background-color: #f76a6a;
+  color: white;
+  padding: 1rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.details-section p {
+  background-color: white;
+  color: #333;
+  padding: 1rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.details-arrow {
+  transition: transform 0.3s ease;
+}
+
+.details-arrow.open {
+  transform: rotate(180deg); /* Rotation de la flèche */
+}
+
+
+
+/* Styles pour la page erreur */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Pleine hauteur de la page */
+  text-align: center;
+  gap: 1rem; /* Espacement entre les éléments */
+}
+
+.error-code {
+  font-size: 10rem; /* Taille énorme pour 404 */
+  font-weight: bold;
+  color: #f76a6a; /* Couleur rouge pour 404 */
+  margin: 0;
+}
+
+.error-message {
+  font-size: 1.5rem;
+  color: #f76a6a; /* Couleur de texte */
+  margin: 0;
+}
+
+.error-link {
+  font-size: 1.1rem;
+  color: #333;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.error-link:hover {
+  color: #f76a6a; /* Changement de couleur au survol */
 }
