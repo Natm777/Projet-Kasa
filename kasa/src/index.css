@@ -17,18 +17,12 @@ code {
 /* Header */
 .header {
   max-width: 1240px;
-  width: 100%;
   margin: 2rem auto; /* Ajustement des marges pour un meilleur espacement */
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  @media screen and (max-width: 700px) {
-    flex-direction: column;
-    padding: 0 20px;
-    box-sizing: border-box;
-    gap: 20px;
-  }
+
 
   .nav-link {
     color: black;
@@ -159,6 +153,11 @@ code {
  width: 100%
  
 }
+
+.logo_mobile {
+  display: none; /* Cache l'image mobile */
+}
+
 
 /*A propos*/
 
@@ -324,16 +323,7 @@ code {
   height: auto; /* Hauteur dynamique quand ouvert */
 }
 
-@media screen and (max-width: 768px) {
-  .description_equipements {
-    flex-direction: column; /* Les éléments seront empilés verticalement */
-    gap: 1rem;
-  }
 
-  .details-section {
-    max-width: 100%; /* Prendre toute la largeur disponible */
-  }
-}
 
 
 /*Info section*/
@@ -444,9 +434,14 @@ code {
   background-color: #f76a6a;
   color: white;
   padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 14px;
+  border-radius: 10px;
+  font-size: 16px;
   font-weight: bold;
+  width: 100px;
+  height: 20px;
+  display: flex; /* Activer Flexbox */
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
 }
 
 /* Styles pour les étoiles */
@@ -521,16 +516,17 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Pleine hauteur de la page */
+  height: 80vh; /* Pleine hauteur de la page */
   text-align: center;
-  gap: 1rem; /* Espacement entre les éléments */
+  gap: 138px; /* Espacement entre les éléments */
 }
 
 .error-code {
-  font-size: 10rem; /* Taille énorme pour 404 */
+  font-size: 200px; /* Taille énorme pour 404 */
   font-weight: bold;
   color: #f76a6a; /* Couleur rouge pour 404 */
   margin: 0;
+  font-family: "Montserrat"; /* Police spécifique */
 }
 
 .error-message {
@@ -548,4 +544,122 @@ code {
 
 .error-link:hover {
   color: #f76a6a; /* Changement de couleur au survol */
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .header {
+    display: flex;
+    align-items: center; /* Aligner les éléments verticalement au centre */
+    max-width: 768px; /* Largeur maximale */
+    margin: 20px;
+   
+  }
+
+  .logo {
+    width: 140px; /* Ajustez la largeur du logo */
+    height: auto; /* Conservez les proportions */
+  }
+  
+
+  .nav-link {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px !important; /* Taille de police réduite */
+    text-transform: uppercase;
+    color: black;
+    text-decoration: none; /* Supprimer le soulignement */
+    font-weight: 500;
+  }
+  
+
+  /* Bannière */
+  .banner {
+    height: 111px;
+    width: auto;
+    border-radius: 10px; /* Réduction des coins arrondis */
+    margin: 20px; /* Ajustement des marges */
+    overflow: hidden;
+  }
+
+  .banner-image {
+    width: 100%; /* S'adapte à la largeur de l'écran */
+    height: 100%;
+  }
+
+  .banner-text {
+    font-size: 24px; /* Réduit la taille du texte pour mobile */
+    padding: 0.5rem; /* Ajout d'un léger padding */
+    white-space: normal; /* Permet au texte de revenir à la ligne */
+    text-align: start; 
+    margin: 10px;
+    
+  }
+
+  .cards {
+    display: flex; /* Passe en mode flexbox */
+    flex-direction: column; /* Dispose les cartes en colonne */
+    align-items: center; /* Centre les cartes horizontalement */
+    gap: 1rem; /* Espace entre les cartes */
+    padding: 1rem; /* Ajustez le padding pour réduire l'espace autour */
+    margin: 0; /* Supprimez les marges inutiles */
+    width: 100%; /* Prenez toute la largeur de l'écran */
+    max-width: none; /* Supprimez la limite de largeur */
+    background-color: white; /* Supprimez la couleur de fond */
+  }
+
+  .card {
+    width: 335px; /* Prenez toute la largeur disponible */
+    height: 225px; /* Ajustez la hauteur au contenu */
+  }
+
+  .card__img {
+    width: 100%; /* L'image occupe toute la largeur de la carte */
+    height: 200px; /* Fixez une hauteur appropriée pour les mobiles */
+    object-fit: cover; /* Ajuste l'image pour remplir sans déformer */
+  }
+
+  .card__title {
+    font-size: 16px; /* Réduit la taille de police pour mobile */
+    padding: 12px; /* Ajuste les marges */
+    line-height: 20px;
+    bottom: 79px; /* Place le texte légèrement au-dessus du bord */
+    position: relative;
+    text-decoration: none !important;
+    border-bottom: none !important;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+
+  .footer {
+    background-color: black;
+    text-align: center;
+    width: 375px; /* Largeur adaptée pour mobile */
+    height: auto;
+  }
+
+  .footer_img {
+    display: none; /* Cache l'image desktop */
+  }
+
+  .logo_mobile {
+    display: block; /* Affiche l'image mobile */
+    width: 122px; /* Taille adaptée pour mobile */
+    height: auto;
+    margin: 0 auto; /* Centre horizontalement */
+    
+  }
+
+
+  .description_equipements {
+    flex-direction: column; /* Les éléments seront empilés verticalement */
+    gap: 1rem;
+  }
+
+  .details-section {
+    max-width: 100%; /* Prendre toute la largeur disponible */
+  }
+  
 }
