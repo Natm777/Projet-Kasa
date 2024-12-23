@@ -1,11 +1,21 @@
 import { useState, useEffect } from "react";
-import Banner from '../../components/Banner';
-import Card from '../../components/Card';
+import Banner from "../../components/Banner";
+import Card from "../../components/Card";
 
 function Home() {
   const [logements, setLogements] = useState([]); // État pour stocker les logements
   const [loading, setLoading] = useState(true); // Indicateur de chargement
   const [error, setError] = useState(null); // Gestion des erreurs
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // État initial basé sur la taille d'écran
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Mettre à jour si l'écran est mobile
+    };
+
+    window.addEventListener("resize", handleResize); // Écoute les changements de taille
+    return () => window.removeEventListener("resize", handleResize); // Nettoyage
+  }, []);
 
   // Utilisation de l'API locale via Docker
   useEffect(() => {
@@ -30,7 +40,17 @@ function Home() {
     <div className="homepage">
       <Banner
         imageSrc="/image_1.png"
-        text="Chez vous, partout et ailleurs"
+        text={
+          isMobile ? (
+            <>
+              Chez vous,
+              <br />
+              partout et ailleurs
+            </>
+          ) : (
+            "Chez vous, partout et ailleurs"
+          )
+        }
       />
 
       {loading && !error && <p>Chargement des logements...</p>}
