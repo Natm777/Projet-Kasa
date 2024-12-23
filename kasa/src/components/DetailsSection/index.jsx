@@ -6,24 +6,27 @@ function DetailsSection({ title, content = "Aucun contenu disponible" }) {
   const detailsRef = useRef(null);
   const contentRef = useRef(null);
 
-  // Synchroniser l'état avec le comportement natif
+  const handleToggle = () => {
+    setIsOpen(isOpen => !isOpen);
+  };
+
   useEffect(() => {
-    const detailsElement = detailsRef.current;
+    const detailsElement = detailsRef?.current;
+
     if (detailsElement) {
-      const handleToggle = () => {
-        setIsOpen(detailsElement.open);
-      };
-      detailsElement.addEventListener("toggle", handleToggle);
-      return () => {
-        detailsElement.removeEventListener("toggle", handleToggle);
-      };
+      detailsElement.addEventListener("click", handleToggle);
     }
+    return () => {
+      if (detailsElement) {
+        detailsElement.removeEventListener("click", handleToggle);
+      }
+    };
   }, []);
 
   return (
-    <details
+    <div
       ref={detailsRef}
-      className={`details-section ${isOpen ? "open" : ""}`}
+      className={`details-section`}
     >
       <summary>
         {title}
@@ -44,7 +47,7 @@ function DetailsSection({ title, content = "Aucun contenu disponible" }) {
       </summary>
      
       <div ref={contentRef} style={{
-        height: isOpen ? contentRef.current.scrollHeight+'px' : '0px',
+        height: isOpen ? contentRef.current.scrollHeight+'px' : '00px',
         overflow: "hidden",
         transition: "0.3s",
       }}>
@@ -60,7 +63,7 @@ function DetailsSection({ title, content = "Aucun contenu disponible" }) {
       )}
     </div>
 
-    </details>
+    </div>
   );
 }
 
