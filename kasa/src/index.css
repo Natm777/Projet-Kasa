@@ -1,18 +1,16 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-
 
 /* Header */
 .header {
@@ -22,27 +20,23 @@ code {
   justify-content: space-between;
   align-items: center;
 
-
-
   .nav-link {
     color: black;
     font-family: Montserrat, sans-serif;
     font-size: 24px;
     text-decoration: none;
-  
   }
-  
+
   /* Style pour le lien actif */
   .nav-link.active {
     text-decoration: underline; /* Le lien actif est souligné */
   }
 
-.navigation {
+  .navigation {
     display: flex;
     gap: 2rem; /* Espace entre "Accueil" et "À propos" */
+  }
 }
-}
-
 
 /* Home.css */
 
@@ -79,7 +73,6 @@ code {
   white-space: nowrap; /* Empêche le retour à la ligne */
 }
 
-
 /*Cards.css */
 .homepage {
   margin-top: 1rem; /* Ajustez la valeur en fonction de l'espace nécessaire */
@@ -93,7 +86,7 @@ code {
   margin: 3rem auto 2rem auto;
   padding: 3rem;
   box-sizing: border-box;
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
   width: 1240px;
   border-radius: 25px;
 }
@@ -105,27 +98,24 @@ code {
   text-align: center; /* Centrer le texte */
   border-radius: 10px; /* Coins arrondis */
   overflow: hidden; /* Masquer le débordement */
-  
 }
 
 .card__img {
- object-fit: cover;
- width: 340px;
- height: 340px;
- border-radius: 8px;
- transition: transform 0.5s ease;
- border-radius: 10px;
- -webkit-border-radius: 10px;
- -moz-border-radius: 10px;
- -ms-border-radius: 10px;
- -o-border-radius: 10px;
+  object-fit: cover;
+  width: 340px;
+  height: 340px;
+  border-radius: 8px;
+  transition: transform 0.5s ease;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .card__img:hover {
   transform: scale(1.05); /* Zoom léger au survol */
 }
-
-
 
 .card__title {
   display: flex;
@@ -134,30 +124,26 @@ code {
   font-weight: 700;
   position: absolute;
   width: 300px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: montserrat;
   line-height: 25px;
   text-align: left;
 }
 
-
 /*Footer.css */
 .footer {
   max-width: 100%;
   margin: auto;
-  
 }
 
 .footer_img {
   margin-top: 50px;
- width: 100%
- 
+  width: 100%;
 }
 
 .logo_mobile {
   display: none; /* Cache l'image mobile */
 }
-
 
 /*A propos*/
 
@@ -179,7 +165,6 @@ code {
   justify-content: center;
   align-items: center;
   object-fit: contain;
-  
 }
 
 .banner.apropos-banner .banner-image {
@@ -188,7 +173,6 @@ code {
   position: absolute;
   z-index: 1;
   object-fit: contain;
-  
 }
 
 /* Styles spécifiques pour carousel-banner*/
@@ -232,7 +216,6 @@ code {
   border-radius: 25px;
 }
 
-
 .banner.carousel-banner .banner-image {
   width: 1240px;
   height: 415px;
@@ -252,11 +235,8 @@ code {
   padding: 0.5rem !important;
   font-size: 18px !important;
   z-index: 2 !important;
-  font-family: Montserrat,;
+  font-family: Montserrat;
 }
-
-
-
 
 /* Styles spécifiques pour la description et les équipements */
 .description_equipements {
@@ -273,7 +253,6 @@ code {
   flex: 1;
   width: 100%;
   color: white;
-   transition: all 0.3s ease; /* Transition fluide */
   position: relative;
 }
 
@@ -288,7 +267,6 @@ code {
   align-items: center;
   cursor: pointer;
   border-radius: 10px;
-
 }
 
 .details-section .details-arrow {
@@ -309,22 +287,7 @@ code {
   padding: 1rem;
   margin: 0;
   list-style: none;
-  
 }
-
-/* Transition fluide pour le contenu */
-.details-section div {
-  overflow: hidden;
-  transition: height 1s ease;
- 
-}
-
-.details-section[open] div {
-  height: auto; /* Hauteur dynamique quand ouvert */
-}
-
-
-
 
 /*Info section*/
 
@@ -333,9 +296,8 @@ code {
   justify-content: space-between; /* Space between RentalInfo and OwnerInfo */
   align-items: center; /* Align items vertically */
   margin: 2rem 0; /* Add vertical spacing */
-  
 }
-  
+
 /*Rental section*/
 .rental {
   max-width: 1240px; /* Limite la largeur au même niveau que le carrousel */
@@ -343,6 +305,7 @@ code {
   display: flex;
   flex-direction: column; /* Arrange les enfants verticalement */
   align-items: center; /* Centre les éléments horizontalement */
+  padding: 15px;
 }
 .stats {
   width: 100%; /* Prend toute la largeur du conteneur */
@@ -353,7 +316,9 @@ code {
 }
 .rental-info {
   flex: 2; /* Prend plus de place que .owner-info */
-  max-width: calc(1240px - 200px - 2rem); /* Largeur dynamique pour rester alignée avec .info-container */
+  max-width: calc(
+    1240px - 200px - 2rem
+  ); /* Largeur dynamique pour rester alignée avec .info-container */
   word-wrap: break-word; /* Gère les longs textes */
 }
 .info-container {
@@ -378,8 +343,8 @@ code {
   color: black;
   font-size: 1.2rem; /* Adjust the font size for the location */
   margin: 0.5rem 0 0 0;
+  font-weight: 500;
 }
-
 
 /*Owner section*/
 .owner-info {
@@ -393,18 +358,20 @@ code {
   gap: 1rem; /* Espace entre l'image et le texte */
 }
 
+.owner {
+  display: none; /* Cache dans le mode mobile */
+}
 .owner-name {
   display: flex;
   flex-direction: column; /* Force le prénom et le nom à être sur deux lignes */
   color: #f76a6a;
-  font-family: 'Montserrat', sans-serif; /* Typographie spécifiée */
+  font-family: "Montserrat", sans-serif; /* Typographie spécifiée */
   font-weight: 500; /* Poids de la police */
   font-size: 18px; /* Taille de la police */
   line-height: 25.67px; /* Hauteur de ligne */
   margin: 0; /* Supprime les marges par défaut */
   text-align: right; /* Alignement à droite */
 }
-
 
 .owner-picture {
   width: 60px;
@@ -413,7 +380,6 @@ code {
   background-color: #d3d3d3;
   flex-shrink: 0; /* Empêche l'image de se déformer */
 }
-
 
 /* Conteneur pour aligner les tags et les étoiles */
 .tags-stars {
@@ -437,7 +403,6 @@ code {
   border-radius: 10px;
   font-size: 16px;
   font-weight: bold;
-  width: 100px;
   height: 20px;
   display: flex; /* Activer Flexbox */
   justify-content: center; /* Centrer horizontalement */
@@ -449,14 +414,13 @@ code {
   display: flex;
   gap: 0.5rem; /* Espacement entre les étoiles */
 }
-
+.stars-mobile {
+  display: none;
+}
 .stars i {
   color: #f76a6a;
   font-size: 18px;
 }
-
-
-
 
 /* Styles pour la section A propos */
 
@@ -475,10 +439,6 @@ code {
   display: flex;
   flex-direction: column;
   gap: 2rem; /* Espacement entre les sections */
-}
-
-.details-section {
-    overflow: hidden;
 }
 
 .details-section summary {
@@ -507,8 +467,6 @@ code {
 .details-arrow.open {
   transform: rotate(180deg); /* Rotation de la flèche */
 }
-
-
 
 /* Styles pour la page erreur */
 .error-container {
@@ -545,23 +503,23 @@ code {
 .error-link:hover {
   color: #f76a6a; /* Changement de couleur au survol */
 }
-
+.stars-owner-row {
+  display: none;
+}
 
 @media screen and (max-width: 768px) {
-
   .header {
     display: flex;
     align-items: center; /* Aligner les éléments verticalement au centre */
     max-width: 768px; /* Largeur maximale */
     margin: 20px;
-   
+    margin-bottom: 5px;
   }
 
   .logo {
     width: 140px; /* Ajustez la largeur du logo */
     height: auto; /* Conservez les proportions */
   }
-  
 
   .nav-link {
     font-family: "Montserrat", sans-serif;
@@ -571,15 +529,31 @@ code {
     text-decoration: none; /* Supprimer le soulignement */
     font-weight: 500;
   }
-  
 
-  /* Bannière */
+  /* Bannière Carousel */
+
+  .banner.carousel-banner {
+    height: 335px;
+    width: 100%;
+    border-radius: 10px;
+    margin: 20px;
+    overflow: hidden;
+  }
+
+  .banner.carousel-banner .banner-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    margin: 0 auto;
+  }
   .banner {
     height: 111px;
     width: auto;
     border-radius: 10px; /* Réduction des coins arrondis */
     margin: 20px; /* Ajustement des marges */
     overflow: hidden;
+    box-shadow: none;
   }
 
   .banner-image {
@@ -591,9 +565,150 @@ code {
     font-size: 24px; /* Réduit la taille du texte pour mobile */
     padding: 0.5rem; /* Ajout d'un léger padding */
     white-space: normal; /* Permet au texte de revenir à la ligne */
-    text-align: start; 
+    text-align: start;
     margin: 10px;
-    
+  }
+
+  .carousel-banner .prev,
+  .carousel-banner .next {
+    padding: 0.3rem 0.6rem; /* Réduit la taille des boutons */
+    font-size: 2rem; /* Réduit la taille du texte */
+    width: 11.67px; /* Taille fixe pour les petits écrans */
+    height: 19.8px;
+  }
+
+  .carousel-banner .prev {
+    left: 5px; /* Réduit l'espace par rapport au bord gauche */
+  }
+
+  .carousel-banner .next {
+    right: 5px; /* Réduit l'espace par rapport au bord droit */
+  }
+
+  .carousel-banner .slide-index {
+    display: none;
+  }
+
+  .rental-title {
+    color: #f76a6a; /* Match the color of the title */
+    font-size: 18px; /* Adjust the font size for the title */
+    font-weight: bold;
+    margin: 0;
+  }
+  .rental-location {
+    color: black;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tags span {
+    font-size: 10px;
+    font-weight: bold;
+    height: 18px;
+    padding: 8px;
+    /* /* width: 84px; */
+  }
+
+  .owner-info-mobile {
+    display: flex;
+    flex-direction: row; /* Aligne les éléments côte à côte */
+    align-items: center; /* Centre verticalement l'image et le texte */
+    text-align: left; /* Aligne le texte à gauche */
+    align-self: flex-start; /* Aligne à gauche en mobile */
+    max-width: 200px;
+    word-wrap: break-word;
+    justify-content: flex-start; /* Aligne les éléments au début */
+    gap: 1rem; /* Espace entre l'image et le texte */
+  }
+
+  .owner-name-mobile {
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center;
+    color: #f76a6a;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 7.67px;
+    margin: 0;
+    text-align: right;
+  }
+
+  .owner-picture-mobile {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #d3d3d3;
+    flex-shrink: 0; /* Empêche l'image de se déformer */
+  }
+
+  .stars-mobile {
+    display: flex;
+    align-items: flex-start; /* Aligne à gauche */
+    flex-shrink: 0; /* Empêche la réduction de taille */
+    gap: 0.5rem;
+    width: 10px;
+    height: 10px;
+  }
+
+  .star-icon {
+    width: 13.41px;
+    height: 13px;
+  }
+
+  .owner-info {
+    display: none; /* Cache dans le mode mobile */
+  }
+
+  .stats {
+    flex-direction: column; /* Réorganise les éléments */
+    align-items: start;
+  }
+
+  .owner {
+    flex-shrink: 0; /* Empêche la réduction de taille */
+    align-self: flex-end; /* S'aligne en haut à droite */
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Espace entre l'image et le texte */
+    text-align: right;
+  }
+
+  .stars {
+    display: none; /*
+    gap: 0.5rem; /* Espacement entre les étoiles */
+  }
+
+  .stars-owner-row {
+    display: flex;
+    justify-content: space-between; /* Stars à gauche, Owner à droite */
+    align-items: center; /* Alignement vertical centré */
+    width: 100%;
+    padding-top: 20px;
+  }
+
+  .info-container {
+    gap: 5cm; /* Espace entre les tags et la ligne stars-owner */
+  }
+
+  .details-section summary {
+    background-color: #f76a6a;
+    color: white;
+    padding: 5px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 18.54px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 30px;
   }
 
   .cards {
@@ -628,16 +743,20 @@ code {
     text-decoration: none !important;
     border-bottom: none !important;
   }
-  
+
   a {
     text-decoration: none;
   }
 
   .footer {
-    background-color: black;
+    background-color: black; /* Fond noir pour le footer */
     text-align: center;
-    width: 375px; /* Largeur adaptée pour mobile */
+    width: 100%; /* Largeur de 100% pour s'adapter à l'écran */
     height: auto;
+    display: flex; /* Flexbox pour centrer */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    margin-top: 50px;
   }
 
   .footer_img {
@@ -646,12 +765,11 @@ code {
 
   .logo_mobile {
     display: block; /* Affiche l'image mobile */
-    width: 122px; /* Taille adaptée pour mobile */
+    width: auto;
     height: auto;
-    margin: 0 auto; /* Centre horizontalement */
-    
+    max-width: 100%; /* Empêche l'image de dépasser la largeur */
+    margin: 0 auto; /* Centre l'image */
   }
-
 
   .description_equipements {
     flex-direction: column; /* Les éléments seront empilés verticalement */
@@ -661,5 +779,50 @@ code {
   .details-section {
     max-width: 100%; /* Prendre toute la largeur disponible */
   }
+
+  .about-details {
+    gap: 20px; /* Espacement entre les sections */
   
+  }
+
+  .apropospage {
+    gap: 5px; /* Ajustement des marges */
+    padding-top: 0rem; /* Ajout de padding */
+  }
+
+
+  .banner.apropos-banner {
+    height: 111px;
+    width: 100%;
+    border-radius: 10px;
+    margin: 20px;
+    overflow: hidden;
+  }
+
+  
+  .banner.apropos-banner .banner-image {
+    width: 400px;
+    height: 111px;
+    object-fit: none;
+    border-radius: 10px;
+  }
+
+  /* Page erreur  */
+
+  .error-code {
+    font-size: 96px;
+  }
+  .error-message {
+    font-size: 18px;
+    color: #f76a6a;
+    margin: 0;
+  }
+  .error-link {
+    font-size: 14px;
+    color: #333;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 500;
+    line-height: 25.67px;
+  }
 }
