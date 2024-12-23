@@ -42,11 +42,13 @@ function DetailsSection({ title, content = "Aucun contenu disponible" }) {
         </svg>
 
       </summary>
+     
       <div ref={contentRef} style={{
-        maxHeight: isOpen ? contentRef.current.scrollHeight : 0,
+        height: isOpen ? contentRef.current.scrollHeight+'px' : '0px',
         overflow: "hidden",
-        transition: "max-height 0.3s ease-in-out",
+        transition: "0.3s",
       }}>
+        
       {Array.isArray(content) ? (
         <ul>
           {content.map((item, index) => (
