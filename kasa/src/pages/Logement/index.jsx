@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import Error from "../../components/Error";
 import Tags from "../../components/Tags";
 import Stars from "../../components/Stars";
+import Starsmobile from "../../components/Starsmobile";
+import Owner from "../../components/Owner";
 
 function Logement() {
   const navigate = useNavigate();
@@ -59,43 +61,56 @@ function Logement() {
 
   return (
     <div className="rental">
-    <Banner images={rental.pictures} className="carousel-banner" />
-  
-    {/* Conteneur pour les informations */}
-    <section className="info-container">
-  <div className="rental-info">
-    <RentalInfo title={rental.title} location={rental.location} />
-  </div>
-  <div className="owner-info">
-    <OwnerInfo hostName={rental.host?.name} hostPicture={rental.host?.picture} />
-  </div>
-</section>
+      <Banner images={rental.pictures} className="carousel-banner" />
 
+      {/* Conteneur pour les informations */}
+      <section className="info-container">
+        <div className="rental-info">
+          <RentalInfo title={rental.title} location={rental.location} />
+        </div>
+        <div className="owner-info">
+          <OwnerInfo
+            hostName={rental.host?.name}
+            hostPicture={rental.host?.picture}
+          />
+        </div>
+      </section>
 
-  
-    {/* Section pour les tags et étoiles */}
-    <section className="stats">
-      <Tags tags={rental.tags} />
-      <Stars stars={stars} />
-    </section>
-  
-    {/* Section Description et Équipements */}
-    <section className="description_equipements">
-      <DetailsSection
-        title="Description"
-        content={rental.description || "Description non disponible"}
-      />
-      <DetailsSection
-        title="Équipements"
-        content={
-          rental.equipments?.length
-            ? rental.equipments
-            : ["Aucun équipement disponible"]
-        }
-      />
-    </section>
-  </div>
-  
+      {/* Section pour les tags et étoiles */}
+      <section className="stats">
+        <Tags tags={rental.tags} />
+        <Stars stars={stars} />
+
+        {/* Section pour les étoiles mobiles et le propriétaire */}
+        <div className="stars-owner-row">
+          <div className="stars-mobile">
+            <Starsmobile stars={stars} />
+          </div>
+          <div className="owner">
+            <Owner
+              hostName={rental.host?.name}
+              hostPicture={rental.host?.picture}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Section Description et Équipements */}
+      <section className="description_equipements">
+        <DetailsSection
+          title="Description"
+          content={rental.description || "Description non disponible"}
+        />
+        <DetailsSection
+          title="Équipements"
+          content={
+            rental.equipments?.length
+              ? rental.equipments
+              : ["Aucun équipement disponible"]
+          }
+        />
+      </section>
+    </div>
   );
 }
 
