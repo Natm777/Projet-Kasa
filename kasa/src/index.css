@@ -1,8 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -70,7 +68,8 @@ code {
   font-weight: bold;
   text-align: center;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8); /* Ombre pour le texte */
-  white-space: nowrap; /* Empêche le retour à la ligne */
+  white-space: pre-wrap;; /* Empêche le retour à la ligne */
+  
 }
 
 /*Cards.css */
@@ -554,6 +553,11 @@ code {
     margin: 20px; /* Ajustement des marges */
     overflow: hidden;
     box-shadow: none;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start; /* Aligne le contenu à gauche */
+    align-items: center; /* Centre verticalement */
+    padding: 0; /* Supprime tout padding intérieur */
   }
 
   .banner-image {
@@ -562,11 +566,11 @@ code {
   }
 
   .banner-text {
-    font-size: 24px; /* Réduit la taille du texte pour mobile */
-    padding: 0.5rem; /* Ajout d'un léger padding */
-    white-space: normal; /* Permet au texte de revenir à la ligne */
-    text-align: start;
-    margin: 10px;
+    font-size: 24px; /* Taille du texte */
+    white-space: normal; /* Permet au texte de revenir à la ligne si nécessaire */
+    text-align: left; /* Aligne le texte à gauche */
+    margin: 10px 0; /* Ajoute un espacement en haut et en bas uniquement */
+    padding-left: 15px; /* Ajoute un espace à gauche sans marge négative */
   }
 
   .carousel-banner .prev,
@@ -592,14 +596,19 @@ code {
   .rental-title {
     color: #f76a6a; /* Match the color of the title */
     font-size: 18px; /* Adjust the font size for the title */
-    font-weight: bold;
-    margin: 0;
+    margin-top: -10px;
   }
+  
   .rental-location {
     color: black;
     font-size: 14px;
     font-weight: 500;
   }
+
+  .stats {
+    margin-top: 0px;
+  }
+
   .tags {
     display: flex;
     flex-wrap: wrap;
@@ -689,7 +698,7 @@ code {
     justify-content: space-between; /* Stars à gauche, Owner à droite */
     align-items: center; /* Alignement vertical centré */
     width: 100%;
-    padding-top: 20px;
+    padding-top: 15px;
   }
 
   .info-container {
@@ -788,6 +797,7 @@ code {
   .apropospage {
     gap: 5px; /* Ajustement des marges */
     padding-top: 0rem; /* Ajout de padding */
+    padding-bottom: 0px;
   }
 
 
@@ -803,7 +813,7 @@ code {
   .banner.apropos-banner .banner-image {
     width: 400px;
     height: 111px;
-    object-fit: none;
+    object-fit: fill;
     border-radius: 10px;
   }
 
