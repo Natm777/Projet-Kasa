@@ -1,35 +1,46 @@
+// Importation des bibliothèques nécessaires
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
+// Déclaration du composant fonctionnel DetailsSection
 function DetailsSection({ title, content = "Aucun contenu disponible" }) {
+  // État pour suivre si la section est ouverte ou fermée
   const [isOpen, setIsOpen] = useState(false);
+  // Références pour les éléments DOM
   const detailsRef = useRef(null);
   const contentRef = useRef(null);
 
+  // Fonction pour basculer l'état ouvert/fermé
   const handleToggle = () => {
-    setIsOpen(isOpen => !isOpen);
+    setIsOpen((isOpen) => !isOpen);
   };
 
+  // Effet pour ajouter et nettoyer l'écouteur d'événements
   useEffect(() => {
+    // Récupère l'élément DOM référencé par detailsRef
     const detailsElement = detailsRef?.current;
 
+    // Si l'élément DOM existe
     if (detailsElement) {
+      // Ajoute un écouteur d'événements pour le clic sur l'élément
       detailsElement.addEventListener("click", handleToggle);
     }
+
+    // Fonction de nettoyage pour retirer l'écouteur d'événements lors du démontage du composant
     return () => {
       if (detailsElement) {
         detailsElement.removeEventListener("click", handleToggle);
       }
     };
-  }, []);
+  }, []); // Exécuté une seule fois au montage du composant
 
   return (
-    <div
-      ref={detailsRef}
-      className={`details-section`}
-    >
+    // Conteneur principal de la section de détails avec une référence et une classe CSS
+    <div ref={detailsRef} className={`details-section`}>
+      {/* Élément de résumé qui affiche le titre et une flèche SVG */}
       <summary>
         {title}
+        {/* Flèche SVG qui change d'orientation en fonction de l'état isOpen */}
         <svg
           className={`details-arrow ${isOpen ? "open" : ""}`}
           width="33"
@@ -43,33 +54,42 @@ function DetailsSection({ title, content = "Aucun contenu disponible" }) {
             fill="white"
           />
         </svg>
-
       </summary>
-     
-      <div ref={contentRef} style={{
-        height: isOpen ? contentRef.current.scrollHeight+'px' : '00px',
-        overflow: "hidden",
-        transition: "0.3s",
-      }}>
-        
-      {Array.isArray(content) ? (
-        <ul>
-          {content.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>{content}</p>
-      )}
-    </div>
-
+      <div
+        ref={contentRef} //Pointe vers la zone de contenu pour mesurer sa hauteur dynamiquement.
+        style={{
+          // Définir la hauteur en fonction de l'état isOpen
+          height: isOpen ? contentRef.current.scrollHeight + "px" : "0px",
+          // Cacher le contenu débordant
+          overflow: "hidden",
+          // Ajouter une transition pour une animation fluide
+          transition: "0.3s",
+        }}
+      >
+        {/* Vérifier si le contenu est un tableau */}
+        {Array.isArray(content) ? (
+          <ul>
+            {/* Mapper chaque élément du tableau pour créer une liste */}
+            {content.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        ) : (
+          // Si le contenu n'est pas un tableau, l'afficher comme un paragraphe
+          <p>{content}</p>
+        )}
+      </div>
     </div>
   );
 }
 
+// Définition des types de props pour le composant DetailsSection
 DetailsSection.propTypes = {
+  // Le prop title est requis et doit être une chaîne de caractères
   title: PropTypes.string.isRequired,
+  // Le prop content peut être soit une chaîne de caractères, soit un tableau
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
 };
 
+// Exportation du composant DetailsSection
 export default DetailsSection;
