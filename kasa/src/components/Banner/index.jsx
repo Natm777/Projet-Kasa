@@ -8,13 +8,10 @@ function Banner({ imageSrc, text, className = "", images = [] }) {
   // Fonction pour avancer dans le carrousel
   const nextSlide = () => {
     setCurrentIndex(prevIndex => {
-      // Vérifier si l'indice actuel + 1 est égal à la longueur du tableau d'images
-      if (prevIndex + 1 === images.length) {
-        // Si oui, réinitialiser l'indice à 0 (retourner au début)
-        return 0;
+        if (prevIndex + 1 === images.length) { // Vérifier si l'indice actuel + 1 est égal à la longueur du tableau d'images
+        return 0; // Si oui, réinitialiser l'indice à 0 (retourner au début)
       } else {
-        // Sinon, simplement incrémenter l'indice
-        return prevIndex + 1;
+        return prevIndex + 1;  // Sinon, simplement incrémenter l'indice
       }
     });
   };
@@ -22,15 +19,14 @@ function Banner({ imageSrc, text, className = "", images = [] }) {
   // Fonction pour reculer dans le carrousel
   const previousSlide = () => {
     setCurrentIndex(prevIndex =>
-      // Si l'indice actuel est 0, revenir à la dernière image
+      // Si l'indice actuel est 0, revenir à la dernière image du tableau sinon décrémenter l'indice
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
   return (
     <div className={`banner ${className}`}>
-      {/* Si des images sont fournies, affichez le carrousel */}
-      {images.length > 0 ? (
+      {images.length > 0 ? ( // Si des images sont fournies, affichez le carrousel
         <>
           <img
             src={images[currentIndex]}
@@ -52,8 +48,7 @@ function Banner({ imageSrc, text, className = "", images = [] }) {
             {currentIndex + 1} / {images.length}
           </div>
         </>
-      ) : (
-        // Sinon, affichez l'image et le texte classique
+      ) : ( // Sinon, affichez l'image et le texte classique
         <>
           <img src={imageSrc} alt="Bannière" className="banner-image" />
           {text && <h1 className="banner-text">{text}</h1>}
