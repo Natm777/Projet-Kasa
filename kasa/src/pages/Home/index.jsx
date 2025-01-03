@@ -64,17 +64,21 @@ function Home() {
           )
         }
       />
-
+      
+      {/* // Affiche un message de chargement si les données sont en cours de chargement et qu'il n'y a pas d'erreur*/}
       {loading && !error && <p>Chargement des logements...</p>}
+      {/*// Affiche un message d'erreur si une erreur s'est produite et que le chargement est terminé*/}
       {error && !loading && <p>Erreur : {error}</p>}
+      
+      {/*// Affiche les cartes des logements si les données sont chargées avec succès et qu'il n'y a pas d'erreur*/}
       {logements && !loading && !error && (
         <div className="cards">
           {logements.map((logement) => (
             <Card
-              key={logement.id}
-              id={logement.id}
-              cover={logement.cover}
-              title={logement.title}
+              key={logement.id} // Clé unique pour chaque carte, basée sur l'ID du logement
+              id={logement.id}  // ID du logement
+              cover={logement.cover} // Image de couverture du logement
+              title={logement.title} //// Titre du logement
             />
           ))}
         </div>
