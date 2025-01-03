@@ -7,12 +7,12 @@ function DetailsSection({ title, content = "Aucun contenu disponible" }) {
   // État pour suivre si la section est ouverte ou fermée
   const [isOpen, setIsOpen] = useState(false);
   // Références pour les éléments DOM
-  const detailsRef = useRef(null);
-  const contentRef = useRef(null);
+  const detailsRef = useRef(null); //pointe vers le conteneur principal pour gérer les clics.
+  const contentRef = useRef(null); // pointe vers la zone de contenu pour mesurer sa hauteur dynamiquement.
 
   // Fonction pour basculer l'état ouvert/fermé
   const handleToggle = () => {
-    setIsOpen((isOpen) => !isOpen);
+    setIsOpen((isOpen) => !isOpen); // Inverse l'état actuel
   };
 
   // Effet pour ajouter et nettoyer l'écouteur d'événements
@@ -37,11 +37,9 @@ function DetailsSection({ title, content = "Aucun contenu disponible" }) {
   return (
     // Conteneur principal de la section de détails avec une référence et une classe CSS
     <div ref={detailsRef} className={`details-section`}>
-      {/* Élément de résumé qui affiche le titre et une flèche SVG */}
-      <summary>
+      <summary> {/* Élément de résumé qui affiche le titre et une flèche SVG */}
         {title}
-        {/* Flèche SVG qui change d'orientation en fonction de l'état isOpen */}
-        <svg
+        <svg // Flèche SVG pour indiquer l'état ouvert ou fermé
           className={`details-arrow ${isOpen ? "open" : ""}`}
           width="33"
           height="32"
@@ -57,17 +55,14 @@ function DetailsSection({ title, content = "Aucun contenu disponible" }) {
       </summary>
       <div
         ref={contentRef} //Pointe vers la zone de contenu pour mesurer sa hauteur dynamiquement.
-        style={{
-          // Définir la hauteur en fonction de l'état isOpen
-          height: isOpen ? contentRef.current.scrollHeight + "px" : "0px",
+        style={{ // Styles CSS en ligne pour le conteneur de contenu
+          height: isOpen ? contentRef.current.scrollHeight + "px" : "0px",// Définir la hauteur en fonction de l'état isOpen
           // Cacher le contenu débordant
           overflow: "hidden",
-          // Ajouter une transition pour une animation fluide
-          transition: "0.3s",
+          transition: "0.3s",// Ajouter une transition pour une animation fluide
         }}
-      >
-        {/* Vérifier si le contenu est un tableau */}
-        {Array.isArray(content) ? (
+       >
+        {Array.isArray(content) ? ( // Vérifier si le contenu est un tableau
           <ul>
             {/* Mapper chaque élément du tableau pour créer une liste */}
             {content.map((item, index) => (
