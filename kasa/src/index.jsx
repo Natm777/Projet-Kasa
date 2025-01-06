@@ -9,7 +9,7 @@ import Home from './pages/Home'; // Page d'accueil
 import Logement from './pages/Logement'; // Page de détail d'un logement
 import Apropos from './pages/Apropos'; // Page "À propos"
 import Header from './components/Header'; // Composant d'en-tête
-import Error from './components/Error'; // Composant de gestion des erreurs (page 404)
+import Error from './pages/Error' // Page d'erreur 
 import Footer from './components/Footer'; // Composant de pied de page
 
 // Rendu de l'application React dans le DOM
@@ -27,7 +27,7 @@ ReactDOM.render(
         <Route path="/logement/:logementId" element={<Logement />} />
         {/* Route pour la page "À propos" */}
         <Route path="/apropos" element={<Apropos />} />
-        {/* Route pour gérer les pages non trouvées (404) */}
+        {/* Route pour gérer les pages non trouvées */}
         <Route path="*" element={<Error />} />
       </Routes>
       {/* Composant de pied de page affiché sur toutes les pages */}
