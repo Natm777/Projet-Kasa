@@ -6,8 +6,6 @@ import OwnerInfo from "../../components/OwnerInfo";
 import DetailsSection from "../../components/DetailsSection";
 import Tags from "../../components/Tags";
 import Stars from "../../components/Stars";
-import Starsmobile from "../../components/Starsmobile";
-import Owner from "../../components/Owner";
 
 function Logement() {
   const [isLoading, setIsLoading] = useState(true); // État pour indiquer le chargement des données
@@ -18,6 +16,17 @@ function Logement() {
     tags: [],
   }); // État pour stocker les données du logement
   const [stars, setStars] = useState([]); // État pour stocker les étoiles de notation
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Initialisation
+
+  // Gère la détection de l'écran mobile
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Met à jour isMobile
+    };
+
+    window.addEventListener("resize", handleResize); // Écoute les changements de taille
+    return () => window.removeEventListener("resize", handleResize); // Nettoyage
+  }, []);
 
   useEffect(() => {
     // Vérifie si le logementId est valide et non vide avant de faire la requête
@@ -63,54 +72,46 @@ function Logement() {
   if (error) return <Navigate to="/error" />; // Si une erreur s'est produite, rediriger vers la page d'erreur 404
 
   return (
-    <div className="rental">
-      {/* Affichage du carrousel de photos */}
-      <Banner images={rental.pictures} className="carousel-banner" />{" "}
-      {/* Conteneur pour les informations */}
-      <section className="info-container">
+    <div className="rental"> {/* Affichage du carrousel de photos */}
+      <Banner images={rental.pictures} className="carousel-banner" />
+      <section className="info-container">  {/* Conteneur pour les informations */}
         <div className="rental-info">
-          {/* Informations sur le logement */}
-          <RentalInfo title={rental.title} location={rental.location} />{" "}
+          <RentalInfo title={rental.title} location={rental.location} />
         </div>
-        <div className="owner-info">
-          {/* Informations sur le propriétaire */}
-          <OwnerInfo
-            hostName={rental.host?.name}
-            hostPicture={rental.host?.picture}
-          />{" "}
-        </div>
-      </section>
-      {/* Section pour les tags et étoiles */}
-      <section className="stats">
-        <Tags tags={rental.tags} /> {/* Affichage des tags */}
-        <Stars stars={stars} /> {/* Affichage des étoiles de notation */}
-        {/* Section pour les étoiles et propriétaire pour mobile*/}
-        <div className="stars-owner-row">
-          <div className="stars-mobile">
-            <Starsmobile stars={stars} />{" "}
-            {/* Affichage des étoiles pour mobile */}
-          </div>
-          <div className="owner">
-            {/* Affichage des informations du propriétaire pour mobile */}
-            <Owner
+        {!isMobile && (
+          <div className="owner-info">
+            <OwnerInfo
               hostName={rental.host?.name}
               hostPicture={rental.host?.picture}
-            />{" "}
+            />
           </div>
-        </div>
+        )}
       </section>
+      <section className="stats">
+        <Tags tags={rental.tags} />
+       <div className="stars-owner-row">
+          <Stars stars={stars} />
+          {isMobile && (
+         <div className="owner-info">
+            <OwnerInfo
+            hostName={rental.host?.name}
+            hostPicture={rental.host?.picture}
+            />
+          </div>
+         )}
+       </div>
+       </section>
       {/* Section Description et Équipements */}
       <section className="description_equipements">
-        {/* Affichage de la description du logement */}
+       {/* Affichage de la description du logement */}
         <DetailsSection
           title="Description"
-          content={rental.description || "Description non disponible"} // Affichage de la description ou d'un message par défaut
-        />{" "}
-        {/* Affichage des équipements du logement */}
+          content={rental.description || "Description non disponible"}
+        />
         <DetailsSection
           title="Équipements"
           content={getEquipmentContent()}
-        />{" "}
+        />
       </section>
     </div>
   );
