@@ -373,8 +373,8 @@ code {
 }
 
 .owner-picture {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background-color: #d3d3d3;
   flex-shrink: 0; /* Empêche l'image de se déformer */
@@ -502,9 +502,7 @@ code {
 .error-link:hover {
   color: #f76a6a; /* Changement de couleur au survol */
 }
-.stars-owner-row {
-  display: none;
-}
+
 
 @media screen and (max-width: 768px) {
   .header {
@@ -606,13 +604,15 @@ code {
   }
 
   .stats {
-    margin-top: 0px;
+    display: flex;
+    flex-direction: column; /* Empile les éléments verticalement */
+    gap: 1rem; /* Espacement entre les sections */
+    width: 100%; /* Prend toute la largeur */
+    margin-top: 1px;
   }
 
   .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    align-self: flex-start; /* Place les tags tout à gauche */
   }
 
   .tags span {
@@ -623,46 +623,18 @@ code {
     /* /* width: 84px; */
   }
 
-  .owner-info-mobile {
+  .stars-owner-row {
     display: flex;
-    flex-direction: row; /* Aligne les éléments côte à côte */
-    align-items: center; /* Centre verticalement l'image et le texte */
-    text-align: left; /* Aligne le texte à gauche */
-    align-self: flex-start; /* Aligne à gauche en mobile */
-    max-width: 200px;
-    word-wrap: break-word;
-    justify-content: flex-start; /* Aligne les éléments au début */
-    gap: 1rem; /* Espace entre l'image et le texte */
+    justify-content: space-between; /* Stars à gauche, Owner à droite */
+    align-items: center; /* Alignement vertical centré */
+    width: 100%;
   }
 
-  .owner-name-mobile {
-    display: flex;
-    flex-direction: column !important;
-    justify-content: center;
-    color: #f76a6a;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 7.67px;
-    margin: 0;
-    text-align: right;
-  }
-
-  .owner-picture-mobile {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: #d3d3d3;
-    flex-shrink: 0; /* Empêche l'image de se déformer */
-  }
-
-  .stars-mobile {
-    display: flex;
-    align-items: flex-start; /* Aligne à gauche */
-    flex-shrink: 0; /* Empêche la réduction de taille */
-    gap: 0.5rem;
-    width: 10px;
-    height: 10px;
+  .stars {
+    display: flex; /* Affiche les étoiles horizontalement */
+    justify-content: flex-start; /* Aligne les étoiles à gauche */
+    align-items: center;
+    gap: 0.5rem; /* Espacement entre les étoiles */
   }
 
   .star-icon {
@@ -671,37 +643,28 @@ code {
   }
 
   .owner-info {
-    display: none; /* Cache dans le mode mobile */
-  }
-
-  .stats {
-    flex-direction: column; /* Réorganise les éléments */
-    align-items: start;
-  }
-
-  .owner {
-    flex-shrink: 0; /* Empêche la réduction de taille */
-    align-self: flex-end; /* S'aligne en haut à droite */
     display: flex;
+    flex-direction: row; /* Aligne l'image et le texte horizontalement */
+    justify-content: flex-end; /* Aligne l'ensemble à droite */
     align-items: center;
-    gap: 1rem; /* Espace entre l'image et le texte */
+    gap: 0.5rem; /* Espace entre l'image et le texte */
+  }
+
+  .owner-picture {
+    width: 32px; /* Taille réduite pour mobile */
+    height: 32px;
+    border-radius: 50%; /* Image circulaire */
+  }
+
+  .owner-name {
+    font-size: 12px; /* Taille de la police réduite */
+    color: #f76a6a;
     text-align: right;
+    line-height: 15px;
   }
 
-  .stars {
-    display: none; /*
-    gap: 0.5rem; /* Espacement entre les étoiles */
-  }
-
-  .stars-owner-row {
-    display: flex;
-    justify-content: space-between; /* Stars à gauche, Owner à droite */
-    align-items: center; /* Alignement vertical centré */
-    width: 100%;
-    padding-top: 15px;
-  }
-
-  .info-container {
+    
+ .info-container {
     gap: 5cm; /* Espace entre les tags et la ligne stars-owner */
   }
 
