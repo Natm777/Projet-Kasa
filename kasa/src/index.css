@@ -724,7 +724,7 @@ code {
     background-color: black; /* Fond noir pour le footer */
     text-align: center;
     width: 100%; /* Largeur de 100% pour s'adapter à l'écran */
-    height: auto;
+    height: 209px;
     display: flex; /* Flexbox pour centrer */
     justify-content: center; /* Centre horizontalement */
     align-items: center; /* Centre verticalement */
