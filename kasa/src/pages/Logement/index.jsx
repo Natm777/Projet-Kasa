@@ -56,7 +56,7 @@ function Logement() {
         setError(error.message); // Gestion des erreurs
         setIsLoading(false); // Fin du chargement
       });
-  }, [logementId]); // Exécuté à chaque changement de logementId 
+  }, [logementId]); // Exécuté à chaque changement de logementId
 
   // Fonction pour obtenir le contenu des équipements
   function getEquipmentContent() {
@@ -72,14 +72,18 @@ function Logement() {
   if (error) return <Navigate to="/error" />; // Si une erreur s'est produite, rediriger vers la page d'erreur 404
 
   return (
-    <div className="rental"> {/* Affichage du carrousel de photos */}
+    <div className="rental">
+      {/* Affichage du carrousel de photos */}
       <Banner images={rental.pictures} className="carousel-banner" />
-      <section className="info-container">  {/* Conteneur pour les informations */}
+      <section className="info-container"> {/* Conteneur pour les informations */}
         <div className="rental-info">
+          {/* Composant RentalInfo pour afficher le titre et la localisation du logement */}
           <RentalInfo title={rental.title} location={rental.location} />
         </div>
+        {/* Affiche les informations du propriétaire uniquement si l'écran n'est pas mobile */}
         {!isMobile && (
           <div className="owner-info">
+            {/* Composant OwnerInfo pour afficher le nom et la photo du propriétaire */}
             <OwnerInfo
               hostName={rental.host?.name}
               hostPicture={rental.host?.picture}
@@ -88,30 +92,33 @@ function Logement() {
         )}
       </section>
       <section className="stats">
+        {/* Composant Tags pour afficher les tags associés au logement */}
         <Tags tags={rental.tags} />
-       <div className="stars-owner-row">
+
+        <div className="stars-owner-row">
+          {/* Composant Stars pour afficher les étoiles de notation */}
           <Stars stars={stars} />
+
+          {/* Affiche les informations du propriétaire uniquement si l'écran est mobile */}
           {isMobile && (
-         <div className="owner-info">
-            <OwnerInfo
-            hostName={rental.host?.name}
-            hostPicture={rental.host?.picture}
-            />
-          </div>
-         )}
-       </div>
-       </section>
+            <div className="owner-info">
+              {/* Composant OwnerInfo pour afficher le nom et la photo du propriétaire */}
+              <OwnerInfo
+                hostName={rental.host?.name}
+                hostPicture={rental.host?.picture}
+              />
+            </div>
+          )}
+        </div>
+      </section>
       {/* Section Description et Équipements */}
       <section className="description_equipements">
-       {/* Affichage de la description du logement */}
+        {/* Affichage de la description du logement */}
         <DetailsSection
           title="Description"
           content={rental.description || "Description non disponible"}
         />
-        <DetailsSection
-          title="Équipements"
-          content={getEquipmentContent()}
-        />
+        <DetailsSection title="Équipements" content={getEquipmentContent()} />
       </section>
     </div>
   );
