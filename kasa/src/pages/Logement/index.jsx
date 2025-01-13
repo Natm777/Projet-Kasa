@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
-import Banner from "../../components/Banner";
+import Carrousel from "../../components/Carrousel";
 import RentalInfo from "../../components/RentalInfo";
 import OwnerInfo from "../../components/OwnerInfo";
 import DetailsSection from "../../components/DetailsSection";
@@ -16,17 +16,21 @@ function Logement() {
     tags: [],
   }); // État pour stocker les données du logement
   const [stars, setStars] = useState([]); // État pour stocker les étoiles de notation
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Initialisation
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // État initial basé sur la taille d'écran
 
   // Gère la détection de l'écran mobile
   useEffect(() => {
+    // Fonction pour mettre à jour l'état isMobile en fonction de la taille de l'écran
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Met à jour isMobile
+      setIsMobile(window.innerWidth <= 768);// Mettre à jour si l'écran est mobile (largeur <= 768px)
     };
-
-    window.addEventListener("resize", handleResize); // Écoute les changements de taille
-    return () => window.removeEventListener("resize", handleResize); // Nettoyage
-  }, []);
+  
+    // Ajoute un écouteur d'événements pour les changements de taille de la fenêtre
+    window.addEventListener("resize", handleResize);
+  
+    // Fonction de nettoyage pour retirer l'écouteur d'événements lors du démontage du composant
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Exécuté une seule fois au montage du composant
 
   useEffect(() => {
     // Vérifie si le logementId est valide et non vide avant de faire la requête
@@ -74,7 +78,7 @@ function Logement() {
   return (
     <div className="rental">
       {/* Affichage du carrousel de photos */}
-      <Banner images={rental.pictures} className="carousel-banner" />
+      <Carrousel images={rental.pictures} className="carousel" />
       <section className="info-container"> {/* Conteneur pour les informations */}
         <div className="rental-info">
           {/* Composant RentalInfo pour afficher le titre et la localisation du logement */}
