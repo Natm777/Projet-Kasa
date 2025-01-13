@@ -46,12 +46,12 @@ function Home() {
         // Indique que le chargement est terminé même en cas d'erreur
         setLoading(false);
       });
-  }, []); // signifie que l'effet est exécuté une seule fois (au montage du composant).
+  }, []); // l'effet est exécuté une seule fois (au montage du composant).
 
   return (
     <div className="homepage">
       <Banner
-        imageSrc="/image_1.png"
+        imageSrc="https://s3-alpha-sig.figma.com/img/4706/e7dd/e270fc8fc902a1eb738458e7b29c1899?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=l8WHfKrXoC9mpbRJo2z8n5DdFKWk9FUjC7hB5jI2mIalTFMaNd9Ub5CsFv-~CRUehhe7OScf-HyMWM1XA1ilvqejw0ocq~4pHzPDMI~6e2gXfuIgworkCn16S3wvwT4xAA0-XRhtyNvFWtpkhh6NvA5pTefqHxzwQu7rTIoU-sG1KSdc3HJtJzN7p~v-7RTqUPrso6rB5P9Dpa~U1Sx7qgmdvbo8feWBzE-JrD2zFN04yBqA2U15GiTGYKlUUCNP62L9l2P-LfjwS2vCbO5WglbtfuXY9nORtt1Ht6jx15W784XNDKpy2wl0uO2Nl-d0s47j84OLw~ClzCSJt1qzfg__"
         text={
           isMobile ? (
             <>
