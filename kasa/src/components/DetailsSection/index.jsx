@@ -1,17 +1,24 @@
+// Importation des bibliothèques nécessaires
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
+// Déclaration du composant fonctionnel DetailsSection
 function DetailsSection({ title, content = "Aucun contenu disponible" }) {
+  // État pour suivre si la section est ouverte ou fermée
   const [isOpen, setIsOpen] = useState(false);
 
+  // Fonction pour basculer l'état ouvert/fermé
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
   };
 
   return (
+    // Conteneur principal de la section de détails avec une classe CSS
     <div className="details-section">
+      {/* Élément de résumé qui affiche le titre et une flèche SVG */}
       <summary>
         {title}
+        {/* Flèche SVG pour indiquer l'état ouvert ou fermé */}
         <svg
           onClick={handleToggle}
           className={`details-arrow ${isOpen ? "open" : ""}`}
@@ -27,14 +34,18 @@ function DetailsSection({ title, content = "Aucun contenu disponible" }) {
           />
         </svg>
       </summary>
+      {/* Conteneur pour le contenu avec des classes CSS dynamiques */}
       <div className={`content-wrapper ${isOpen ? "open" : "closed"}`}>
+        {/* Vérifier si le contenu est un tableau */}
         {Array.isArray(content) ? (
           <ul>
+            {/* Mapper chaque élément du tableau pour créer une liste */}
             {content.map((item, index) => (
               <li key={index}>{item}</li>
             ))}
           </ul>
         ) : (
+          // Si le contenu n'est pas un tableau, l'afficher comme un paragraphe
           <p>{content}</p>
         )}
       </div>
@@ -42,9 +53,13 @@ function DetailsSection({ title, content = "Aucun contenu disponible" }) {
   );
 }
 
+// Définition des types de props pour le composant DetailsSection
 DetailsSection.propTypes = {
+  // Le prop title est requis et doit être une chaîne de caractères
   title: PropTypes.string.isRequired,
+  // Le prop content peut être soit une chaîne de caractères, soit un tableau
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
 };
 
+// Exportation du composant DetailsSection
 export default DetailsSection;
