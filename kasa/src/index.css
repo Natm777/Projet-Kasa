@@ -152,32 +152,10 @@ code {
   justify-content: center;
 }
 
-/* Styles spécifiques pour la bannière sur la page A propos */
-.banner.apropos-banner {
-  position: relative;
-  width: 100%;
-  max-width: 1240px;
-  height: 223px;
-  border-radius: 25px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  object-fit: contain;
-}
+/* Styles spécifiques pour crarousel*/
 
-.banner.apropos-banner .banner-image {
-  width: 1240px;
-  height: 223px;
-  position: absolute;
-  z-index: 1;
-  object-fit: contain;
-}
-
-/* Styles spécifiques pour carousel-banner*/
-
-.carousel-banner .prev,
-.carousel-banner .next {
+.carrousel .prev,
+.carrousel .next {
   position: absolute;
   top: 50%; /* Centre verticalement */
   transform: translateY(-50%); /* Ajustement vertical */
@@ -194,15 +172,15 @@ code {
   align-items: center;
 }
 
-.carousel-banner .prev {
+.carrousel .prev {
   left: 10px; /* Position à gauche */
 }
 
-.carousel-banner .next {
+.carrousel .next {
   right: 10px; /* Position à droite */
 }
 
-.banner.carousel-banner {
+.carrousel {
   position: relative;
   width: 100%;
   max-width: 1240px;
@@ -215,7 +193,7 @@ code {
   border-radius: 25px;
 }
 
-.banner.carousel-banner .banner-image {
+.carrousel-image {
   width: 1240px;
   height: 415px;
   position: absolute;
@@ -224,7 +202,7 @@ code {
   border-radius: 25px;
 }
 
-.carousel-banner .slide-index {
+.carrousel .slide-index {
   position: absolute !important;
   bottom: 10px !important;
   left: 50% !important;
@@ -253,39 +231,95 @@ code {
   width: 100%;
   color: white;
   position: relative;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .details-section summary {
   background-color: #f76a6a;
   color: white;
   padding: 1rem;
-  font-size: 24px;
+  font-size: 1.2rem;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
   border-radius: 10px;
+  z-index: 1; /* Priorité visuelle du titre */
+  position: relative; /* Assure que le z-index s'applique */
+  transition: color 0.4s ease-in-out;
+ 
 }
+
+.details-section .content-wrapper {
+  position: relative;
+  transform-origin: top; /* L'origine est fixée en haut, au niveau du titre */
+  transform: scaleY(0); /* Cache initialement le contenu */
+  opacity: 0; /* Rend invisible */
+  max-height: 0; /* Hauteur initiale à 0 */
+  overflow: hidden; /* Empêche tout débordement */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.4s ease-in-out, 
+              max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Transitions fluides */
+}
+
+
+
+ .details-section .content-wrapper.open {
+  transform: scaleY(1); /* Déploie verticalement */
+  opacity: 1; /* Rend visible */
+  max-height: 1000px; /* Hauteur arbitrairement grande pour afficher tout le contenu */
+  }
+
+
+
+ .details-section .content-wrapper.closed {
+  transform: scaleY(0); /* Replie verticalement */
+  opacity: 0; /* Rend invisible */
+  max-height: 0; /* Réduit la hauteur à 0 */
+  }
 
 .details-section .details-arrow {
-  width: 17px;
-  height: 17px;
-  transition: transform 0.3s ease; /* Rotation fluide pour la flèche */
-  border-radius: 50%; /* Flèche arrondie */
+  width: 25px;
+  height: 25px;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1); 
+  border-radius: 50%;
+  
 }
 
-.details-section[open] .details-arrow {
-  transform: rotate(180deg); /* Rotation de la flèche lorsqu'elle est ouverte */
+.details-arrow.open {
+  transform: rotate(-180deg);
+}
+
+.details-arrow.closed {
+  transform: rotate(0deg);
 }
 
 .details-section p,
 .details-section ul {
-  background-color: white; /* Fond blanc pour le contenu */
+  background-color: #F6F6F673; /* Fond  pour le contenu */
   color: #333; /* Texte sombre */
   padding: 1rem;
   margin: 0;
   list-style: none;
+  font-size: 18px;
+  
+}
+
+.details-section p {
+  line-height: 1.5;
+
+}
+
+.details-section div {
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: max-height;
+  max-height: 0;
+}
+.details-section div.open {
+  max-height: 1000px; /* Use a large enough value to ensure the full height is animated */
 }
 
 /*Info section*/
@@ -440,32 +474,6 @@ code {
   gap: 2rem; /* Espacement entre les sections */
 }
 
-.details-section summary {
-  background-color: #f76a6a;
-  color: white;
-  padding: 1rem;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  font-size: 1.2rem;
-}
-
-.details-section p {
-  background-color: white;
-  color: #333;
-  padding: 1rem;
-  margin: 0;
-  line-height: 1.5;
-}
-
-.details-arrow {
-  transition: transform 0.3s ease;
-}
-
-.details-arrow.open {
-  transform: rotate(180deg); /* Rotation de la flèche */
-}
 
 /* Styles pour la page erreur */
 .error-container {
@@ -527,9 +535,9 @@ code {
     font-weight: 500;
   }
 
-  /* Bannière Carousel */
+  /* Carrousel */
 
-  .banner.carousel-banner {
+  .carrousel{
     height: 335px;
     width: 100%;
     border-radius: 10px;
@@ -537,7 +545,7 @@ code {
     overflow: hidden;
   }
 
-  .banner.carousel-banner .banner-image {
+  .carrousel-image {
     width: 100%;
     height: 100%;
     border-radius: 10px;
@@ -546,9 +554,9 @@ code {
   }
   .banner {
     height: 111px;
-    width: auto;
+    width: 335px;
     border-radius: 10px; /* Réduction des coins arrondis */
-    margin: 20px; /* Ajustement des marges */
+    margin: auto; /* Ajustement des marges */
     overflow: hidden;
     box-shadow: none;
     padding: 0;
@@ -559,8 +567,8 @@ code {
   }
 
   .banner-image {
-    width: 100%; /* S'adapte à la largeur de l'écran */
-    height: 100%;
+    width: 335px; 
+    height: 111px;
   }
 
   .banner-text {
@@ -571,23 +579,23 @@ code {
     padding-left: 15px; /* Ajoute un espace à gauche sans marge négative */
   }
 
-  .carousel-banner .prev,
-  .carousel-banner .next {
+  .carrousel .prev,
+  .carrousel .next {
     padding: 0.3rem 0.6rem; /* Réduit la taille des boutons */
     font-size: 2rem; /* Réduit la taille du texte */
     width: 11.67px; /* Taille fixe pour les petits écrans */
     height: 19.8px;
   }
 
-  .carousel-banner .prev {
+  .carrousel .prev {
     left: 5px; /* Réduit l'espace par rapport au bord gauche */
   }
 
-  .carousel-banner .next {
+  .carrousel .next {
     right: 5px; /* Réduit l'espace par rapport au bord droit */
   }
 
-  .carousel-banner .slide-index {
+  .carrousel .slide-index {
     display: none;
   }
 
@@ -668,10 +676,11 @@ code {
     gap: 5cm; /* Espace entre les tags et la ligne stars-owner */
   }
 
-  .details-section summary {
+ .details-section summary {
     background-color: #f76a6a;
     color: white;
     padding: 5px;
+    margin: 1px;
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: 13px;
@@ -681,6 +690,10 @@ code {
     cursor: pointer;
     border-radius: 5px;
     height: 30px;
+  }
+  .details-section p,
+  .details-section ul {
+    font-size: 12px;
   }
 
   .cards {
@@ -754,31 +767,16 @@ code {
 
   .about-details {
     gap: 20px; /* Espacement entre les sections */
+    width: 335px;
   
   }
 
   .apropospage {
-    gap: 5px; /* Ajustement des marges */
-    padding-top: 0rem; /* Ajout de padding */
+    gap: 20px; /* Ajustement des marges */
+    padding-top: 1rem; /* Ajout de padding */
     padding-bottom: 0px;
   }
 
-
-  .banner.apropos-banner {
-    height: 111px;
-    width: 100%;
-    border-radius: 10px;
-    margin: 20px;
-    overflow: hidden;
-  }
-
-  
-  .banner.apropos-banner .banner-image {
-    width: 400px;
-    height: 111px;
-    object-fit: fill;
-    border-radius: 10px;
-  }
 
   /* Page erreur  */
 
